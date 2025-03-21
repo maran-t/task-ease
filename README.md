@@ -25,3 +25,32 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Todo
+
+Task Management App (like Trello/Jira) is a solid choice! 🚀
+
+🔥 Tech Stack & Features
+🏗 Tech Stack:
+Frontend: Angular (Signals, RxJS, NgRx)
+Backend: Node.js (Express/NestJS) + MongoDB/PostgreSQL
+Real-time Updates: WebSockets (Socket.io)
+Authentication: OAuth2 (Google/Facebook) & JWT
+Drag & Drop: Angular CDK
+Charts & Analytics: Chart.js/D3.js
+🛠 Core Features:
+✅ User Authentication (Signup/Login with JWT)
+✅ Create & Manage Tasks (Title, Description, Due Date, Status: Todo/In Progress/Done)
+✅ Drag & Drop Tasks (Using Angular CDK)
+✅ Task Assignment (Assign to users)
+✅ Real-time Task Updates (WebSockets)
+✅ Basic Dashboard (List/Kanban View of Tasks)
+✅ Filters & Sorting (By Status, Due Date)
+
+🚀 Bonus Features (After MVP)
+🔥 Email Notifications for Due Tasks
+🔥 Task Comments & Mentions
+🔥 Role-based Access (Admin/User)
+🔥 Task History & Activity Logs
+🔥 Jira/GitHub Integration
