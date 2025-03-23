@@ -1,16 +1,29 @@
-<div class="bg-white rounded-lg shadow p-4 flex flex-col h-full">
+<div class="bg-white rounded-lg p-4 flex flex-col md:h-100 shadow">
   <div class="flex items-center justify-between mb-3">
     <h2 class="text-sm font-semibold text-gray-600 mb-3">{{ status | titlecase }}</h2>
-    <!-- <button class="cursor-pointer bg-blue-500 text-white text-xs px-3 py-1 rounded" (click)="openForm(null, status)">
-      + Add
-    </button> -->
   </div>
 
   <div class="space-y-2 flex-1 overflow-auto">
-    <div *ngFor="let task of tasks" 
-         [ngClass]="{'bg-gray-200': status === 'todo', 'bg-yellow-200': status === 'in-progress', 'bg-green-200': status === 'done'}"
-         class="p-3 rounded-lg">
-      {{ task.title }}
+    <div *ngFor="let task of tasks"
+      [ngClass]="{'bg-gray-200': status === 'todo', 'bg-yellow-200': status === 'in-progress', 'bg-green-200': status === 'done'}"
+      class="p-3 rounded-lg flex">
+      <div [class.line-through]="status === 'done'">
+        {{ task.title }}
+      </div>
+    
+      <div class="flex justify-between items-center ml-auto">
+        <span class="text-xs text-gray-500 mr-4" *ngIf="task.dueDate">{{ task.dueDate | date }}</span>
+        <div>
+          <button class="text-grey-800 hover:text-blue-800 mat-ripple cursor-pointer flex items-center gap-2"
+            (click)="openForm(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div *ngIf="tasks.length === 0" class="text-center text-gray-500 m-8 flex items-center justify-center md:h-50">
+      No {{status}} task available
+    </div>
+
 </div>

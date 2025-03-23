@@ -1,12 +1,7 @@
 export interface Task {
-    id: string;
+    id: number;
     title: string;
-    description?: string;
     status: 'todo' | 'in-progress' | 'done';
-    assignee?: string;
-    dueDate?: Date;
-    priority?: 'low' | 'medium' | 'high';
-    createdAt: Date;
-    updatedAt?: Date;
+    dueDate?: string | Date;
   }
   

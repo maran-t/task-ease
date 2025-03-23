@@ -10,6 +10,10 @@
     <!-- (click)="openForm(null, status)" -->
   
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-4/6">
-      <app-task-card *ngFor="let status of taskMap.keys()" [status]="status" [tasks]="taskMap.get(status)"></app-task-card>
+      <app-task-card *ngFor="let status of taskStatus" [status]="status" [tasks]="tasks | filterStatus: status"></app-task-card>
     </div>
+  </div>
+
+  <div *ngIf="isLoading" class="spinner-container fixed inset-0 flex items-center justify-center bg-white overlay z-50">
+    <mat-spinner></mat-spinner>
   </div>
