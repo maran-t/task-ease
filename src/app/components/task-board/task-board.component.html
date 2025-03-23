@@ -1,0 +1,15 @@
+<div class="max-w-5xl mx-auto h-screen flex flex-col justify-top p-4 pt-16">
+    <div class="flex">
+      <h1 class="text-2xl font-bold mb-4 ml-1 text-gray-700 mb-8">Task Board</h1>
+      <div class="ml-8" style="margin-top:4px;">
+        <button class="cursor-pointer bg-blue-500 text-white text-xs px-3 py-1 rounded" (click)="openForm(null)">
+          + Add
+        </button>
+      </div>
+    </div>
+    <!-- (click)="openForm(null, status)" -->
+  
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-4/6">
+      <app-task-card *ngFor="let status of taskMap.keys()" [status]="status" [tasks]="taskMap.get(status)"></app-task-card>
+    </div>
+  </div>

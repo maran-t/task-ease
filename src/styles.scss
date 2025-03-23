@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+body {
+    user-select: none;
+}
+
+.custom-dialog-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.custom-backdrop {
+    background: rgba(0, 0, 0, 0.279) !important;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
