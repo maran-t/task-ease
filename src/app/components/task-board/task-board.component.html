@@ -7,7 +7,6 @@
         </button>
       </div>
     </div>
-    <!-- (click)="openForm(null, status)" -->
   
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-4/6">
       <app-task-card *ngFor="let status of taskStatus" [status]="status" [tasks]="tasks | filterStatus: status"></app-task-card>
