@@ -1,29 +1,77 @@
-<div class="bg-white rounded-lg p-4 flex flex-col md:h-100 shadow">
-  <div class="flex items-center justify-between mb-3">
-    <h2 class="text-sm font-semibold text-gray-600 mb-3">{{ status | titlecase }}</h2>
+<div class="card h-full flex flex-col overflow-hidden">
+  <!-- Card Header -->
+  <div class="card-header bg-gray-50">
+    <div class="flex items-center">
+      <div class="w-3 h-3 rounded-full mr-2" 
+           [ngClass]="{
+             'bg-blue-500': status === 'todo',
+             'bg-yellow-500': status === 'in-progress',
+             'bg-green-500': status === 'done'
+           }"></div>
+      <h2 class="text-base font-bold text-gray-800">{{ status | titlecase }}</h2>
+      <span class="ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600">
+        {{ tasks.length }}
+      </span>
+    </div>
   </div>
 
-  <div class="flex-1 overflow-auto">
-    <div *ngFor="let task of tasks"
-      [ngClass]="{'bg-gray-200': status === 'todo', 'bg-yellow-200': status === 'in-progress', 'bg-green-200': status === 'done'}"
-      class="p-3 mb-2 rounded-lg flex">
-      <div [class.line-through]="status === 'done'">
-        {{ task.title }}
-      </div>
-    
-      <div class="flex justify-between items-center ml-auto">
-        <span class="text-xs text-gray-500 mr-4" *ngIf="task.dueDate">{{ task.dueDate | date }}</span>
-        <div>
-          <button class="text-grey-800 hover:text-blue-800 mat-ripple cursor-pointer flex items-center gap-2"
-            (click)="openForm(task)">
-            <mat-icon>edit</mat-icon>
+  <!-- Task List -->
+  <div class="flex-1 overflow-y-auto p-4 space-y-3">
+    <ng-container *ngIf="tasks.length > 0; else emptyState">
+      <div 
+        *ngFor="let task of tasks; trackBy: trackByTaskId"
+        class="task-item bg-white rounded-lg border border-gray-100 p-4 shadow-sm hover:shadow-md transition-shadow duration-200"
+        [class.border-l-4]="status === 'todo'"
+        [class.border-l-blue-500]="status === 'todo'"
+        [class.border-l-yellow-500]="status === 'in-progress'"
+        [class.border-l-green-500]="status === 'done'"
+      >
+        <div class="flex justify-between items-start">
+          <div class="flex-1 min-w-0">
+            <h3 
+              class="text-sm font-medium text-gray-900 mb-1 truncate"
+              [class.line-through text-gray-400]="status === 'done'"
+            >
+              {{ task.title }}
+            </h3>
+            
+            <div class="flex items-center text-xs text-gray-500 mt-2">
+              <svg *ngIf="task.dueDate" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span *ngIf="task.dueDate">{{ task.dueDate | date:'MMM d, yyyy' }}</span>
+            </div>
+          </div>
+          
+          
+          <button 
+            (click)="openForm(task); $event.stopPropagation()"
+            class="btn-icon text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            aria-label="Edit task"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
           </button>
         </div>
       </div>
-    </div>
+    </ng-container>
 
-    <div *ngIf="tasks.length === 0" class="text-center text-gray-500 m-8 flex items-center justify-center md:h-50">
-      No {{status}} task available
-    </div>
-
+    <!-- Empty State -->
+    <ng-template #emptyState>
+      <div class="flex flex-col items-center justify-center py-8 px-4 text-center">
+        <div class="bg-gray-100 p-3 rounded-full mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        </div>
+        <h4 class="text-sm font-medium text-gray-700 mb-1">No tasks here yet</h4>
+        <p class="text-xs text-gray-500">
+          {{ status === 'todo' ? 'Add a new task to get started' : 
+             status === 'in-progress' ? 'Drag tasks here to mark them as in progress' :
+             'Completed tasks will appear here' }}
+        </p>
+      </div>
+    </ng-template>
+  </div>
 </div>

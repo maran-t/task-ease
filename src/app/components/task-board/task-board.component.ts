@@ -17,7 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './task-board.component.scss'
 })
 export class TaskBoardComponent {
-  taskStatus: string[] = ['todo', 'in-progress', 'done'];
+  status: string[] = ['todo', 'in-progress', 'done'];
   tasks: Task[] = [];
   isLoading = true;
 

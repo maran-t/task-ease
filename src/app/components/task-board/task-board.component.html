@@ -1,18 +1,44 @@
-<div class="max-w-5xl mx-auto h-screen flex flex-col justify-top p-4 pt-16">
-    <div class="flex">
-      <h1 class="text-2xl font-bold mb-4 ml-1 text-gray-700 mb-8">Task Board</h1>
-      <div class="ml-8" style="margin-top:4px;">
-        <button class="cursor-pointer bg-blue-500 text-white text-xs px-3 py-1 rounded" (click)="openForm(null)">
-          + Add
-        </button>
+<div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Task Board</h1>
+        <p class="mt-1 text-sm text-gray-500">Manage your tasks efficiently</p>
       </div>
+      <button 
+        (click)="openForm(null)"
+        class="btn btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-medium shadow-sm hover:shadow-md transition-all duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        Add New Task
+      </button>
     </div>
-  
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-4/6">
-      <app-task-card *ngFor="let status of taskStatus" [status]="status" [tasks]="tasks | filterStatus: status"></app-task-card>
+
+    <!-- Task Board -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <ng-container *ngFor="let status of status">
+        <app-task-card 
+          [status]="status" 
+          [tasks]="tasks | filterStatus: status"
+          class="animate-fade-in"
+          [style.animation-delay]="(status.indexOf(status) * 0.1) + 's'"
+        ></app-task-card>
+      </ng-container>
     </div>
   </div>
 
-  <div *ngIf="isLoading" class="spinner-container fixed inset-0 flex items-center justify-center bg-white overlay z-50">
-    <mat-spinner></mat-spinner>
+  
+  <!-- Loading Overlay -->
+  <div 
+    *ngIf="isLoading" 
+    class="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50 backdrop-blur-sm"
+  >
+    <div class="text-center">
+      <div class="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+      <p class="mt-4 text-sm font-medium text-gray-700">Loading tasks...</p>
+    </div>
   </div>
+</div>
