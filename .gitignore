@@ -45,4 +45,4 @@ Thumbs.db
 
 .gemini
 .cursor
-.cursor/*
+.cursor/*dev_server.log
