@@ -1,73 +1,59 @@
 # TaskEase
 
-TaskEase is a modern task management application built with Angular 17, designed to help you organize and track your tasks efficiently. With a clean, intuitive interface and powerful features, TaskEase makes managing your daily tasks a breeze.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
 
-## ✨ Features
+## Development server
 
-- 📝 Create, edit, and delete tasks
-- 🏷️ Categorize tasks by status (To Do, In Progress, Done)
-- 🔍 Filter tasks by status
-- 🎨 Clean and responsive user interface
-- 🚀 Built with Angular 17 and modern web technologies
-- 📱 Mobile-friendly design
+To start a local development server, run:
 
-## 🚀 Getting Started
+```bash
+ng serve
+```
 
-### Prerequisites
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-- Node.js (v16 or later)
-- npm (v8 or later) or Yarn
-- Angular CLI (v17 or later)
+## Code scaffolding
 
-### Installation
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/task-ease.git
-   cd task-ease
-   ```
+```bash
+ng generate component component-name
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-### Development Server
+```bash
+ng generate --help
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Building
 
-### Build
+To build the project run:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng build
+```
 
-## 🛠️ Development
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-### Code Scaffolding
+## Running unit tests
 
-Run `ng generate component component-name` to generate a new component. You can also use:
-- `ng generate directive|pipe|service|class|guard|interface|enum|module`
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-### Running Tests
+```bash
+ng test
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running end-to-end tests
 
-## 📂 Project Structure
+For end-to-end (e2e) testing, run:
 
-- `src/app/components/` - Reusable UI components
-  - `task-board/` - Main task board component
-  - `task-form/` - Form for adding/editing tasks
-  - `footer/` - Application footer
-- `src/app/models/` - TypeScript interfaces and models
-- `src/app/store/` - NgRx store configuration (actions, reducers, selectors)
-- `src/app/services/` - Application services
+```bash
+ng e2e
+```
 
-## 🤝 Contributing
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Additional Resources
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
