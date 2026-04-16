@@ -65,6 +65,15 @@ export class Board {
     }
   }
 
+  addTask() {
+    const title = prompt('New task title');
+    if (!title) return;
+    const description = prompt('Task description') || '';
+    const id = String(Date.now());
+    // add to first column (To Do)
+    this.columns[0].tasks.unshift({ id, title, description });
+  }
+
   get connectedDropLists(): string[] {
     return this.columns.map((c) => c.id);
   }

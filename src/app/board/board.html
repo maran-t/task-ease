@@ -1,21 +1,23 @@
-<div class="min-h-screen bg-gray-50 text-gray-900 font-sans p-8">
-  <header class="mb-8">
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Task Dashboard</h1>
-    <p class="text-gray-500 mt-1">Manage your tasks effortlessly.</p>
+<div class="kanban-root" role="application" aria-label="TaskEase Kanban board">
+  <header class="kanban-header">
+    <div>
+      <h1 class="kanban-title">TaskEase</h1>
+      <p class="kanban-subtitle text-muted">A calm, focused workspace for your tasks.</p>
+    </div>
+
+    <div class="kanban-controls">
+      <input type="search" placeholder="Search tasks..." aria-label="Search tasks" class="search-input" />
+      <button class="btn-new-task" (click)="addTask()" aria-label="Add task">+ New Task</button>
+    </div>
   </header>
 
-  <div class="flex gap-6 overflow-x-auto pb-4 h-full items-start">
-    <div
-      *ngFor="let column of columns"
-      class="bg-gray-100/80 rounded-2xl p-4 w-80 shrink-0 border border-gray-200 shadow-sm flex flex-col"
-    >
-      <div class="flex items-center justify-between mb-4 px-2">
-        <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-700">
-          {{ column.title }}
-        </h2>
-        <span class="bg-gray-200 text-gray-600 text-xs py-0.5 px-2.5 rounded-full font-medium">
-          {{ column.tasks.length }}
-        </span>
+  <div class="columns" role="list">
+    <div *ngFor="let column of columns" class="column" role="listitem">
+      <div class="column-header">
+        <h2 class="column-title">{{ column.title }}</h2>
+        <div class="column-meta">
+          <span class="badge" aria-hidden="true">{{ column.tasks.length }}</span>
+        </div>
       </div>
 
       <div
@@ -23,17 +25,20 @@
         [id]="column.id"
         [cdkDropListData]="column.tasks"
         [cdkDropListConnectedTo]="connectedDropLists"
-        class="flex flex-col gap-3 min-h-[150px] p-2"
+        class="drop-list"
         (cdkDropListDropped)="drop($event)"
+        role="list"
+        [attr.aria-labelledby]="column.id"
       >
-        <div
-          *ngFor="let task of column.tasks"
-          cdkDrag
-          class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow"
-        >
-          <div class="flex flex-col gap-1">
-            <span class="font-medium text-gray-900 leading-tight">{{ task.title }}</span>
-            <span class="text-sm text-gray-500 leading-snug">{{ task.description }}</span>
+        <div *ngFor="let task of column.tasks" cdkDrag role="listitem" class="task-card">
+          <div class="task-top">
+            <div class="task-title">{{ task.title }}</div>
+            <div class="priority-dot" aria-hidden="true"></div>
+          </div>
+          <div class="task-desc text-muted">{{ task.description }}</div>
+          <div class="task-footer">
+            <span class="pill">ID {{ task.id }}</span>
+            <button class="btn-small" aria-label="Open task">Open</button>
           </div>
         </div>
       </div>

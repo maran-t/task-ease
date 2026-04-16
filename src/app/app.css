@@ -1,0 +1,28 @@
+:root{
+	--bg:#f6f7f6;
+	--panel:#ffffff;
+	--accent:#0ea5a4;
+	--muted:#6b7280;
+	--glass: rgba(255,255,255,0.6);
+}
+
+html,body{height:100%;}
+
+body{
+	margin:0;
+	font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: linear-gradient(180deg,#fbfcfd 0%,var(--bg) 100%);
+	color:#0f172a;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+h1,h2,h3,h4{
+	font-family: 'Playfair Display', serif;
+	color:#0b1220;
+	margin:0;
+}
+
+/* Small utility */
+.text-muted{ color: var(--muted); }
+
